@@ -51,12 +51,33 @@
         input[type=submit]:hover {
             background-color: #45a049;
         }
-    </style>
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init({
+        publicKey: "cQDfn8kTK6FcgkBFX",
+      });
+   })();
+</script>;
+
+        function sendEmail(event) {
+            event.preventDefault();
+            
+            emailjs.sendForm('service_p3hjrje', 'template_5nom1dj', event.target)
+                .then(function() {
+                    alert('Your message has been sent!');
+                }, function(error) {
+                    alert('Failed to send the message, please try again.');
+                });
+        }
+    </script>
 </head>
 <body>
     <div class="bg">
         <div class="container">
-            <form action="mailto:ijobaswanky@gmail.com" method="post" enctype="text/plain">
+            <form onsubmit="sendEmail(event)">
                 <label for="fullname">Full Name</label>
                 <input type="text" id="fullname" name="fullname" required>
 
